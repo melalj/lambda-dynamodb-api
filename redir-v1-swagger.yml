@@ -1,0 +1,33 @@
+---
+swagger: "2.0"
+info:
+  version: "2016-07-11T13:21:17Z"
+  title: "dynamo_db_api"
+basePath: "/"
+schemes:
+- "https"
+paths:
+  /:
+    post:
+      parameters: []
+      responses:
+        200:
+          description: "200 response"
+          headers: {}
+      security:
+      - api_key: []
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseTemplates:
+              application/json: "__passthrough__"
+        uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:{{AWS_ACCOUNT_NUMBER}}:function:dynamo_db_post/invocations"
+        httpMethod: "POST"
+        type: "aws"
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "x-api-key"
+    in: "header"
+definitions: {}
