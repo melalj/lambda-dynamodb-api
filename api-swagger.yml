@@ -5,7 +5,7 @@ info:
   title: "dynamo_db_api"
 basePath: "/"
 schemes:
-- "https"
+- "http"
 paths:
   /:
     post:

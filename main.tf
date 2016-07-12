@@ -4,6 +4,22 @@ provider "aws" {
 	region = "${var.aws_region}"
 }
 
+resource "aws_dynamodb_table" "test" {
+    name = "test"
+    read_capacity = 1
+    write_capacity = 1
+    hash_key = "key"
+    range_key = "timestamp"
+    attribute {
+      name = "key"
+      type = "S"
+    }
+    attribute {
+      name = "timestamp"
+      type = "N"
+    }
+}
+
 resource "aws_iam_role_policy" "dynamo_db_api_logs_rw" {
     name = "dynamo_db_api_logs_rw"
     role = "${aws_iam_role.lambda_dynamo_db_api.id}"
